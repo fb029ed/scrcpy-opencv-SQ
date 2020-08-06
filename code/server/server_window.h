@@ -16,7 +16,7 @@ public:
     ServerWindow(QWidget *parent = nullptr);
     ~ServerWindow();
     void set_app(QApplication* p_app);
-    int get_socket();
+    int get_socket(int* socket);
     
 private slots:
     void on_ComboBox_bitrate_currentIndexChanged(const QString &arg1);
@@ -41,5 +41,6 @@ private:
     Server _server;
     //用于界面控制
     QApplication* _p_app;
+    int* _psocket;
 };
 #endif // SERVERWINDOW_H

@@ -9,8 +9,10 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
+find_package(OpenCV 4.2 REQUIRED)
 
 include_directories(code/server)
+include_directories(code/stream)
 #qt头文件路径
 include_directories(${QT_INCLUDES})
 include_directories(${Qt5Widgets_INCLUDE_DIRS})
@@ -23,10 +25,23 @@ target_link_libraries(server
     pthread
 )
 
+#生成stream库
+AUX_SOURCE_DIRECTORY(${PROJECT_SOURCE_DIR}/code/stream DIR_SRCS)
+add_library(stream  ${DIR_SRCS})
+target_link_libraries(stream
+    ${OpenCV_LIBS}
+    avcodec   
+    avformat 
+    avutil
+    swscale
+)
+
 add_executable(scrcpy-gamepro
   code/main.cpp
 )
 
 target_link_libraries(scrcpy-gamepro
     server
+    stream
+    ${OpenCV_LIBS}
 )

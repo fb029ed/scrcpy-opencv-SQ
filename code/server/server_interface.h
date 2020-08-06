@@ -11,7 +11,8 @@ public:
     bool init();
     int get_socket();
 private:
-    ServerWindow _server_window;
+    int _socket_id;
+    ServerWindow* _p_server_window; 
 };
 
 #endif // !SERVER_INTERFACE_H

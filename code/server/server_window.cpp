@@ -26,6 +26,7 @@ void ServerWindow::on_pushButton_start_clicked()
 {
     _server.start_by_step();
     //完成参数设置则退出设置界面
+    *_psocket = _server.get_socket();
     _p_app->exit(0);
 }
 
@@ -63,6 +64,6 @@ void ServerWindow::set_app(QApplication* p_app){
     _p_app = p_app;
 }
 
-int ServerWindow::get_socket(){
-    return _server.get_socket();
+int ServerWindow::get_socket(int* socket){
+    _psocket = socket;
 }

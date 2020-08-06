@@ -46,8 +46,10 @@ bool Server::aftermath(){
             break;
         }
         case RUN_SUCCESS:{
+            /*
             remove_server_from_device("/data/local/tmp/scrcpy-server");
             remove_reverse("localabstract:scrcpy");
+            */
             ret = true;
             break;
         }
@@ -148,6 +150,7 @@ bool Server::start_run_in_device(){
         / com.genymobile.scrcpy.Server 1.14 info " + to_string(_resolution) + " " + to_string(_bitrate) +
         " 120 -1 false - true true 0 false false profile=1,level=1" + " > temp.txt";
     auto tmp = [](string cmd_use){
+        //this_thread::sleep_for(chrono::milliseconds(5));
         system(cmd_use.c_str());
     };
     _device_server_thread = thread(tmp,cmd);

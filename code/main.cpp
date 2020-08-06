@@ -1,7 +1,7 @@
-#include "server.h"
+#include "server_interface.h"
 int main(int argc, char *argv[])
 {
-    Server server;
+    ServerInterface server;
     server.init();
     return true;
 }

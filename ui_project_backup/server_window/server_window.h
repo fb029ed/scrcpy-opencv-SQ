@@ -2,7 +2,6 @@
 #define SERVERWINDOW_H
 
 #include <QMainWindow>
-#include "server.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class ServerWindow; }
@@ -15,9 +14,7 @@ class ServerWindow : public QMainWindow
 public:
     ServerWindow(QWidget *parent = nullptr);
     ~ServerWindow();
-    void set_app(QApplication* p_app);
-    int get_socket();
-    
+
 private slots:
     void on_ComboBox_bitrate_currentIndexChanged(const QString &arg1);
 
@@ -35,11 +32,7 @@ private slots:
 
     void on_comboBox_game_currentIndexChanged(const QString &arg1);
 
-
 private:
     Ui::ServerWindow *ui;
-    Server _server;
-    //用于界面控制
-    QApplication* _p_app;
 };
 #endif // SERVERWINDOW_H

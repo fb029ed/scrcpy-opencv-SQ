@@ -20,6 +20,7 @@ AUX_SOURCE_DIRECTORY(${PROJECT_SOURCE_DIR}/code/server DIR_SRCS)
 add_library(server  ${DIR_SRCS})
 target_link_libraries(server
     PRIVATE Qt5::Widgets
+    pthread
 )
 
 add_executable(scrcpy-gamepro

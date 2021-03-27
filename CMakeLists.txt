@@ -13,6 +13,7 @@ find_package(OpenCV 4.2 REQUIRED)
 
 include_directories(code/server)
 include_directories(code/stream)
+include_directories(code/recipe)
 #qt头文件路径
 include_directories(${QT_INCLUDES})
 include_directories(${Qt5Widgets_INCLUDE_DIRS})
@@ -36,11 +37,19 @@ target_link_libraries(stream
     swscale
 )
 
+#生成recipe库
+AUX_SOURCE_DIRECTORY(${PROJECT_SOURCE_DIR}/code/recipe DIR_SRCS)
+add_library(recipe  ${DIR_SRCS})
+target_link_libraries(recipe
+    ${OpenCV_LIBS}
+)
+
 add_executable(scrcpy-gamepro
   code/main.cpp
 )
 
 target_link_libraries(scrcpy-gamepro
+    recipe
     server
     stream
     ${OpenCV_LIBS}

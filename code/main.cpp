@@ -1,7 +1,10 @@
 #include "server_interface.h"
 #include "stream.h"
+#include "zhidao.h"
 int main(int argc, char *argv[])
 {
+    ZhiDao zhidao;
+    zhidao.init("/home/y/github/scrcpy-GamePro/res/template.jpg");
     ServerInterface server;
     server.init();
     Stream video_stream;
@@ -12,6 +15,10 @@ int main(int argc, char *argv[])
         if(!video_stream.get_img(src))
             break;
         imshow("origin",src);
+        if(!zhidao.detect(src)){
+            zhidao.action();
+            cout << "action" << endl;
+        }
         waitKey(1);
     }
     return 0;
